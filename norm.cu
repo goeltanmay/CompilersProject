@@ -3,7 +3,7 @@
 #include<sys/time.h>
 
 #define BLOCK_SIZE 32
-#define GRID_SIZE 160
+#define GRID_SIZE 80
 #define SIZE BLOCK_SIZE*BLOCK_SIZE*GRID_SIZE*GRID_SIZE
 
 void checkresult(float *ref, float *in, float *out, float *mul, int width){
