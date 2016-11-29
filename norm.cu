@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<sys/time.h>
 
-#define BLOCK_SIZE 16
+#define BLOCK_SIZE 32
 #define GRID_SIZE 160
 #define SIZE BLOCK_SIZE*BLOCK_SIZE*GRID_SIZE*GRID_SIZE
 
