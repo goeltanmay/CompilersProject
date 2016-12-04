@@ -50,26 +50,26 @@ __global__ void norm(float *in, float *out, float *mul, int width){
 	float sum = 0.0f;
 
 	for(int i = 0; i < BLOCK_SIZE; i++){
-		for(int j = 0; j < BLOCK_SIZE; j++){
-		    sum += in[start + i * width + j] * mul[j];
-		} 
-		// int base_index = start + i * width;
-		// sum += in[base_index + 0] * mul[0];
-		// sum += in[base_index + 1] * mul[1];
-		// sum += in[base_index + 2] * mul[2];
-		// sum += in[base_index + 3] * mul[3];
-		// sum += in[base_index + 4] * mul[4];
-		// sum += in[base_index + 5] * mul[5];
-		// sum += in[base_index + 6] * mul[6];
-		// sum += in[base_index + 7] * mul[7];
-		// sum += in[base_index + 8] * mul[8];
-		// sum += in[base_index + 9] * mul[9];
-		// sum += in[base_index + 10] * mul[10];
-		// sum += in[base_index + 11] * mul[11];
-		// sum += in[base_index + 12] * mul[12];
-		// sum += in[base_index + 13] * mul[13];
-		// sum += in[base_index + 14] * mul[14];
-		// sum += in[base_index + 15] * mul[15];
+		// for(int j = 0; j < BLOCK_SIZE; j++){
+		//     sum += in[start + i * width + j] * mul[j];
+		// } 
+		int base_index = start + i * width;
+		sum += in[base_index + 0] * mul[0];
+		sum += in[base_index + 1] * mul[1];
+		sum += in[base_index + 2] * mul[2];
+		sum += in[base_index + 3] * mul[3];
+		sum += in[base_index + 4] * mul[4];
+		sum += in[base_index + 5] * mul[5];
+		sum += in[base_index + 6] * mul[6];
+		sum += in[base_index + 7] * mul[7];
+		sum += in[base_index + 8] * mul[8];
+		sum += in[base_index + 9] * mul[9];
+		sum += in[base_index + 10] * mul[10];
+		sum += in[base_index + 11] * mul[11];
+		sum += in[base_index + 12] * mul[12];
+		sum += in[base_index + 13] * mul[13];
+		sum += in[base_index + 14] * mul[14];
+		sum += in[base_index + 15] * mul[15];
 	}
 	
 	out[tx * width + ty] = in[tx * width + ty]/sum;
