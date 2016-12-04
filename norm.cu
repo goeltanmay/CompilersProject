@@ -50,7 +50,7 @@ __global__ void norm(float *in, float *out, float *mul, int width){
 	float sum = 0.0f;
 
 	for(int i = 0; i < BLOCK_SIZE; i++){
-		 for(int j = 0; j < BLOCK_SIZE; j++){
+		for(int j = 0; j < BLOCK_SIZE; j++){
 		    sum += in[start + i * width + j] * mul[j];
 		} 
 		// int base_index = start + i * width;
@@ -71,13 +71,14 @@ __global__ void norm(float *in, float *out, float *mul, int width){
 		// sum += in[base_index + 14] * mul[14];
 		// sum += in[base_index + 15] * mul[15];
 	}
+	
+	out[tx * width + ty] = in[tx * width + ty]/sum;
+
 	if(tx % 2 == 0 && ty % 2 == 0)
-		out[tx * width + ty] = 2.0 * in[tx * width + ty]/sum;
-	else if(tx % 2 == 1 && ty % 2 == 0)
-		out[tx * width + ty] = in[tx * width + ty]/sum;
+		out[tx * width + ty] = 2.0 * out[tx * width + ty];
 	else if(tx % 2 == 1 && ty % 2 == 1)
-		out[tx * width + ty] = (-1.0) * in[tx * width + ty]/sum;
-	else
+		out[tx * width + ty] = (-1.0) * out[tx * width + ty];
+	else if (tx % 2 == 0 && ty % 2 == 1)
 		out[tx * width + ty] = 0.0f;
 
 }
