@@ -50,25 +50,25 @@ __global__ void norm(float *in, float *out, float *mul, int width){
 	float sum = 0.0f;
 
 	for(int i = 0; i < BLOCK_SIZE; i++){
-		/* for(int j = 0; j < BLOCK_SIZE; j++){
-		*	 sum += in[start + i * width + j] * mul[j];
-		 } */
-		sum += in[start + i * width + 0] * mul[0];
-		sum += in[start + i * width + 1] * mul[1];
-		sum += in[start + i * width + 2] * mul[2];
-		sum += in[start + i * width + 3] * mul[3];
-		sum += in[start + i * width + 4] * mul[4];
-		sum += in[start + i * width + 5] * mul[5];
-		sum += in[start + i * width + 6] * mul[6];
-		sum += in[start + i * width + 7] * mul[7];
-		sum += in[start + i * width + 8] * mul[8];
-		sum += in[start + i * width + 9] * mul[9];
-		sum += in[start + i * width + 10] * mul[10];
-		sum += in[start + i * width + 11] * mul[11];
-		sum += in[start + i * width + 12] * mul[12];
-		sum += in[start + i * width + 13] * mul[13];
-		sum += in[start + i * width + 14] * mul[14];
-		sum += in[start + i * width + 15] * mul[15];
+		 for(int j = 0; j < BLOCK_SIZE; j++){
+		    sum += in[start + i * width + j] * mul[j];
+		} 
+		// sum += in[start + i * width + 0] * mul[0];
+		// sum += in[start + i * width + 1] * mul[1];
+		// sum += in[start + i * width + 2] * mul[2];
+		// sum += in[start + i * width + 3] * mul[3];
+		// sum += in[start + i * width + 4] * mul[4];
+		// sum += in[start + i * width + 5] * mul[5];
+		// sum += in[start + i * width + 6] * mul[6];
+		// sum += in[start + i * width + 7] * mul[7];
+		// sum += in[start + i * width + 8] * mul[8];
+		// sum += in[start + i * width + 9] * mul[9];
+		// sum += in[start + i * width + 10] * mul[10];
+		// sum += in[start + i * width + 11] * mul[11];
+		// sum += in[start + i * width + 12] * mul[12];
+		// sum += in[start + i * width + 13] * mul[13];
+		// sum += in[start + i * width + 14] * mul[14];
+		// sum += in[start + i * width + 15] * mul[15];
 	}
 	if(tx % 2 == 0 && ty % 2 == 0)
 		out[tx * width + ty] = 2.0 * in[tx * width + ty]/sum;
