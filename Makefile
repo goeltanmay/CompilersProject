@@ -1,4 +1,4 @@
-PROGS= norm
+PROGS= norm, opt1
 SM=
 norm: norm.cu
 	nvcc -o $@ $^ $(SM)
