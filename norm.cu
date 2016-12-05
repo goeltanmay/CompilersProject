@@ -72,23 +72,23 @@ __global__ void norm(float *in, float *out, float *mul, int width){
 		sum += in[base_index + 15] * mul[15];
 	}
 
-	out[tx * width + ty] = in[tx * width + ty]/sum;
-
-	if(tx % 2 == 0 && ty % 2 == 0)
-		out[tx * width + ty] = 2.0 * out[tx * width + ty];
-	else if(tx % 2 == 1 && ty % 2 == 1)
-		out[tx * width + ty] = (-1.0) * out[tx * width + ty];
-	else if (tx % 2 == 0 && ty % 2 == 1)
-		out[tx * width + ty] = 0.0f;
+	// out[tx * width + ty] = in[tx * width + ty]/sum;
 
 	// if(tx % 2 == 0 && ty % 2 == 0)
-	// 	out[tx * width + ty] = 2.0 * in[tx * width + ty]/sum;
-	// else if(tx % 2 == 1 && ty % 2 == 0)
-	// 	out[tx * width + ty] = in[tx * width + ty]/sum;
+	// 	out[tx * width + ty] = 2.0 * out[tx * width + ty];
 	// else if(tx % 2 == 1 && ty % 2 == 1)
-	// 	out[tx * width + ty] = (-1.0) * in[tx * width + ty]/sum;
-	// else
+	// 	out[tx * width + ty] = (-1.0) * out[tx * width + ty];
+	// else if (tx % 2 == 0 && ty % 2 == 1)
 	// 	out[tx * width + ty] = 0.0f;
+
+	if(tx % 2 == 0 && ty % 2 == 0)
+		out[tx * width + ty] = 2.0 * in[tx * width + ty]/sum;
+	else if(tx % 2 == 1 && ty % 2 == 0)
+		out[tx * width + ty] = in[tx * width + ty]/sum;
+	else if(tx % 2 == 1 && ty % 2 == 1)
+		out[tx * width + ty] = (-1.0) * in[tx * width + ty]/sum;
+	else
+		out[tx * width + ty] = 0.0f;
 
 }
 
